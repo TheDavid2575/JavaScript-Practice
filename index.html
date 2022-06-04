@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Loading things with AJAX</h1>
+    <button id="btn">Load somethig without refreshig the page</button>
+    <br /><br />
+    <div id="textToBeAdded"></div>
+  </body>
+  <script>
+    const btn = document.getElementById("btn");
+    const placeHolder = document.getElementById("textToBeAdded");
+
+    btn.addEventListener("click", () => {
+      // Creating an XHR API object
+      const xhr = new XMLHttpRequest();
+
+      //
+      xhr.open("Get", "thing.text", true);
+
+      // On-load
+      xhr.onload = function (argument, reject) {
+        if (this.status == 200) {
+          document.getElementById("textToBeAdded").innerHTML =
+            this.responseText;
+        }
+      };
+
+      // Send
+      xhr.send();
+    });
+  </script>
+</html>
